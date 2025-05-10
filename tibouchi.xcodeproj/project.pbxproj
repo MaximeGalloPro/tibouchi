@@ -15,6 +15,12 @@
 		4F5E423E2DCFA85900227F30 /* tibouchi_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E423D2DCFA85900227F30 /* tibouchi_Watch_AppTests.swift */; };
 		4F5E42482DCFA85900227F30 /* tibouchi_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E42472DCFA85900227F30 /* tibouchi_Watch_AppUITests.swift */; };
 		4F5E424A2DCFA85900227F30 /* tibouchi_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E42492DCFA85900227F30 /* tibouchi_Watch_AppUITestsLaunchTests.swift */; };
+		4FCC9B672DCFBCCD00F20283 /* prompt_story_generation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FCC9B612DCFBCCD00F20283 /* prompt_story_generation.txt */; };
+		4FCC9B682DCFBCCD00F20283 /* StorylineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC9B622DCFBCCD00F20283 /* StorylineParser.swift */; };
+		4FCC9B692DCFBCCD00F20283 /* GameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC9B632DCFBCCD00F20283 /* GameModels.swift */; };
+		4FCC9B6A2DCFBCCD00F20283 /* StorylineStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC9B642DCFBCCD00F20283 /* StorylineStorage.swift */; };
+		4FCC9B6B2DCFBCCD00F20283 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC9B652DCFBCCD00F20283 /* OpenAIService.swift */; };
+		4FCC9B6C2DCFBCCD00F20283 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC9B662DCFBCCD00F20283 /* SwipeCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,12 @@
 		4F5E42432DCFA85900227F30 /* tibouchi Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tibouchi Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E42472DCFA85900227F30 /* tibouchi_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tibouchi_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		4F5E42492DCFA85900227F30 /* tibouchi_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tibouchi_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4FCC9B612DCFBCCD00F20283 /* prompt_story_generation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prompt_story_generation.txt; sourceTree = "<group>"; };
+		4FCC9B622DCFBCCD00F20283 /* StorylineParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorylineParser.swift; sourceTree = "<group>"; };
+		4FCC9B632DCFBCCD00F20283 /* GameModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModels.swift; sourceTree = "<group>"; };
+		4FCC9B642DCFBCCD00F20283 /* StorylineStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorylineStorage.swift; sourceTree = "<group>"; };
+		4FCC9B652DCFBCCD00F20283 /* OpenAIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		4FCC9B662DCFBCCD00F20283 /* SwipeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +130,12 @@
 		4F5E422B2DCFA85700227F30 /* tibouchi Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				4FCC9B632DCFBCCD00F20283 /* GameModels.swift */,
+				4FCC9B652DCFBCCD00F20283 /* OpenAIService.swift */,
+				4FCC9B612DCFBCCD00F20283 /* prompt_story_generation.txt */,
+				4FCC9B622DCFBCCD00F20283 /* StorylineParser.swift */,
+				4FCC9B642DCFBCCD00F20283 /* StorylineStorage.swift */,
+				4FCC9B662DCFBCCD00F20283 /* SwipeCardView.swift */,
 				4F5E422C2DCFA85700227F30 /* tibouchiApp.swift */,
 				4F5E422E2DCFA85700227F30 /* ContentView.swift */,
 				4F5E42302DCFA85900227F30 /* Assets.xcassets */,
@@ -284,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F5E42342DCFA85900227F30 /* Preview Assets.xcassets in Resources */,
+				4FCC9B672DCFBCCD00F20283 /* prompt_story_generation.txt in Resources */,
 				4F5E42312DCFA85900227F30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +329,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F5E422F2DCFA85700227F30 /* ContentView.swift in Sources */,
+				4FCC9B692DCFBCCD00F20283 /* GameModels.swift in Sources */,
 				4F5E422D2DCFA85700227F30 /* tibouchiApp.swift in Sources */,
+				4FCC9B6A2DCFBCCD00F20283 /* StorylineStorage.swift in Sources */,
+				4FCC9B682DCFBCCD00F20283 /* StorylineParser.swift in Sources */,
+				4FCC9B6C2DCFBCCD00F20283 /* SwipeCardView.swift in Sources */,
+				4FCC9B6B2DCFBCCD00F20283 /* OpenAIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tibouchi Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XA7232QJ9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = tibouchi;
@@ -503,6 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tibouchi Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XA7232QJ9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = tibouchi;
@@ -531,6 +557,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XA7232QJ9P;
 				INFOPLIST_KEY_CFBundleDisplayName = tibouchi;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gallocorp.tibouchi;
@@ -546,6 +573,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XA7232QJ9P;
 				INFOPLIST_KEY_CFBundleDisplayName = tibouchi;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gallocorp.tibouchi;

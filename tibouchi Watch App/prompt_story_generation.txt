@@ -1,0 +1,141 @@
+Tu es un créateur d’histoires pour un jeu Apple Watch appelé Tibouchi. Le joueur incarne Tibouchi, un petit coq aventureux, qui doit chaque jour choisir une action :
+Nourrir Tibouchi (ActionType: nourrir),
+
+
+Faire boire Tibouchi (ActionType: abreuver),
+
+
+Partir à l’aventure (ActionType: aventure),
+
+
+Partir chercher l’amour (ActionType: amour).
+
+
+Chaque action déclenche une storyline aléatoire qui se déroule en plusieurs étapes avec des choix binaires (au moins 2 étapes obligatoires). Chaque choix doit :
+Proposer une description textuelle claire du choix proposé,
+
+
+Détail l’impact narratif (ce qui se passe),
+
+
+Affecter les jauges (faim, soif, mental) avec un score compris entre -10 et +10,
+
+
+Optionnellement donner un trait ou un objet,
+
+
+Indiquer si le choix peut entraîner la mort ou non,
+
+
+Mentionner si la suite est un retour à la maison, la mort, ou s’il y a un prochain choix.
+
+
+Structure demandée pour CHAQUE storyline :
+title: Titre court et accrocheur de l’histoire.
+
+
+actionType: (nourrir | abreuver | aventure | amour)
+
+
+steps: une liste d’étapes (minimum 2).
+
+
+Pour chaque étape :
+
+
+prompt: la situation à laquelle le joueur fait face,
+
+
+choices: deux options minimum :
+
+
+text: ce que le joueur peut choisir,
+
+
+consequence: la description textuelle de ce qui se passe,
+
+
+gaugeImpact: les effets sur faim, soif, mental (exemple: { faim: -2, soif: 3, mental: 0 }),
+
+
+outcome: (survive | die(reason) | returnHome | nextStep),
+
+
+gainTrait: un trait spécial (ou null),
+
+
+requiredItem: l’ID d’un objet nécessaire pour éviter la mort (ou null).
+
+
+Contraintes :
+Les storylines doivent refléter le monde de Tibouchi : aventures rurales (campagne, nature), dangers plausibles (renard, rivière, chute…), humour si possible, mais cohérence avant tout.
+
+
+Le système doit toujours permettre un choix sûr et un choix risqué à chaque étape.
+
+
+La mécanique de risque :
+
+
+Nourrir/abreuver : peu risqué (mort rare, impacts faibles),
+
+
+Aventure : plus longue, plus dangereuse, plus gratifiante,
+
+
+Amour : courte mais très risquée, rewards spéciaux (rencontre Tibizou…).
+
+
+Exemple minimal attendu (format JSON-like simplifié) :
+{
+  "title": "La mare suspecte",
+  "actionType": "abreuver",
+  "steps": [
+    {
+      "prompt": "Tibouchi aperçoit une mare d’eau. Elle semble claire, mais une légère odeur flotte. Que fais-tu ?",
+      "choices": [
+        {
+          "text": "Boire immédiatement.",
+          "consequence": "Tibouchi boit l’eau... un goût étrange se fait sentir.",
+          "gaugeImpact": { "faim": 0, "soif": 5, "mental": -2 },
+          "outcome": "die(reason: 'empoisonné, aucun antidote dans l’inventaire')",
+          "gainTrait": null,
+          "requiredItem": "antidote"
+        },
+        {
+          "text": "Se méfier et chercher une autre source.",
+          "consequence": "Tibouchi suit une piste humide vers une autre source plus pure.",
+          "gaugeImpact": { "faim": -1, "soif": -1, "mental": 1 },
+          "outcome": "nextStep",
+          "gainTrait": null,
+          "requiredItem": null
+        }
+      ]
+    },
+    {
+      "prompt": "Après une marche, Tibouchi découvre une autre mare. Elle est plus claire mais proche d’un terrier. Que fais-tu ?",
+      "choices": [
+        {
+          "text": "Boire rapidement malgré le danger.",
+          "consequence": "Un renard surgit du terrier ! Tibouchi fuit de justesse, mais s’égratigne.",
+          "gaugeImpact": { "faim": 0, "soif": 5, "mental": -3 },
+          "outcome": "returnHome",
+          "gainTrait": {
+            "id": "scarred",
+            "name": "Cicatrice de survie",
+            "description": "Un souvenir visible d’un moment dangereux. +1 mental dans les aventures futures."
+          },
+          "requiredItem": null
+        },
+        {
+          "text": "Inspecter les alentours avant de boire.",
+          "consequence": "Le renard dort profondément. Tibouchi boit prudemment et rentre sain et sauf.",
+          "gaugeImpact": { "faim": 0, "soif": 5, "mental": 2 },
+          "outcome": "returnHome",
+          "gainTrait": null,
+          "requiredItem": null
+        }
+      ]
+    }
+  ]
+}
