@@ -8,6 +8,9 @@ import asyncio
 from models import ActionType, Storyline
 from open_ai_service import OpenAIService, OpenAIResponse
 from story_line_parser import parse_storyline, StorylineParseError
+import argparse
+import re
+from datetime import datetime
 
 def extract_first_json(text: str) -> Optional[str]:
     """
@@ -48,12 +51,14 @@ class StorylineGenerator:
         # TODO: Implémenter StorylineStorage
         # self.storyline_storage = StorylineStorage()
     
-    async def generate_storyline(self, action_type: ActionType) -> Storyline:
+    async def generate_storyline(self, action_type: ActionType, num_steps: int = 2, theme: Optional[str] = None) -> Storyline:
         """
         Génère une storyline pour un type d'action donné.
         
         Args:
             action_type: Le type d'action pour lequel générer la storyline
+            num_steps: Le nombre d'étapes dans la storyline (par défaut: 2)
+            theme: Un thème optionnel pour guider la génération de l'histoire
             
         Returns:
             La storyline générée
@@ -61,13 +66,6 @@ class StorylineGenerator:
         Raises:
             Exception: Si la génération échoue après 10 tentatives
         """
-        # Charger le prompt template
-        try:
-            prompt_template_path = os.path.join(os.path.dirname(__file__), "prompt_story_generation.txt")
-            with open(prompt_template_path, "r", encoding="utf-8") as f:
-                prompt_template = f.read()
-        except Exception as e:
-            raise Exception(f"Impossible de charger le template de prompt: {str(e)}")
         
         # Créer le prompt spécifique pour l'action
         prompt = f"""
@@ -100,14 +98,15 @@ class StorylineGenerator:
 
         Règles importantes :
         1. Les valeurs de gaugeImpact doivent être entre -10 et 10
-        2. Chaque étape doit avoir au moins 2 choix
-        3. Les conséquences doivent être cohérentes avec les choix
+        2. La storyline doit contenir exactement {num_steps} étapes, chacune avec exactement 2 choix
+        3. Les conséquences doivent être logiques et proportionnelles aux choix : un choix risqué doit avoir des impacts plus importants qu'un choix prudent
         4. L'histoire doit être adaptée au type d'action demandé
         5. Les choix doivent avoir un impact significatif sur les jauges
         6. L'histoire doit être engageante et amusante
         7. IMPORTANT : Utilise "action_type" et non "actionType" dans le JSON
         8. IMPORTANT : Ne mets pas de balises markdown ou de commentaires dans le JSON
         9. IMPORTANT : Réponds UNIQUEMENT avec le JSON, sans aucun autre texte
+        {f'10. IMPORTANT : L\'histoire doit être centrée sur le thème suivant : {theme}' if theme else ''}
 
         Génère une storyline pour l'action suivante : {action_type.value}
         """
@@ -186,13 +185,36 @@ class StorylineGenerator:
 
 # Exemple d'utilisation
 async def main():
+    parser = argparse.ArgumentParser(description='Génère une storyline pour Tibouchi')
+    parser.add_argument('--steps', type=int, default=2, help='Nombre d\'étapes dans la storyline (défaut: 2)')
+    parser.add_argument('--theme', type=str, help='Thème optionnel pour la storyline')
+    args = parser.parse_args()
+
     generator = StorylineGenerator()
     try:
-        storyline = await generator.generate_storyline(ActionType.NOURRIR)
+        storyline = await generator.generate_storyline(ActionType.NOURRIR, num_steps=args.steps, theme=args.theme)
         print(f"Storyline générée avec succès :")
         print(f"Titre : {storyline.title}")
         print(f"Type d'action : {storyline.action_type.value}")
         print(f"Nombre d'étapes : {len(storyline.steps)}")
+        if args.theme:
+            print(f"Thème : {args.theme}")
+        # Sauvegarde du JSON original dans un fichier (formaté)
+        try:
+            # Utiliser le JSON original stocké dans l'objet Storyline
+            json_data = json.loads(storyline.raw_json if storyline.raw_json else json.dumps(storyline.__dict__, default=str))
+            # Créer le dossier outputs s'il n'existe pas
+            os.makedirs('outputs', exist_ok=True)
+            # Nettoyer le titre pour le nom de fichier
+            title = json_data.get('title', 'storyline')
+            safe_title = re.sub(r'[^\w\-]', '_', title).strip('_')
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"outputs/{safe_title}_{timestamp}.json"
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(json_data, f, ensure_ascii=False, indent=2)
+            print(f"Storyline sauvegardée dans {filename} (formaté)")
+        except Exception as e:
+            print(f"Erreur lors de la sauvegarde du JSON : {e}")
     except Exception as e:
         print(f"Erreur lors de la génération : {str(e)}")
 

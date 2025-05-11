@@ -105,8 +105,9 @@ class Storyline:
     title: str
     action_type: ActionType
     steps: List[StoryStep]
+    raw_json: Optional[str] = None
 
-    def __init__(self, id: str, title: str, action_type: Union[str, ActionType], steps: List[dict]):
+    def __init__(self, id: str, title: str, action_type: Union[str, ActionType], steps: List[dict], raw_json: Optional[str] = None):
         self.id = id
         self.title = title
         if isinstance(action_type, str):
@@ -114,6 +115,7 @@ class Storyline:
         else:
             self.action_type = action_type
         self.steps = [StoryStep(**step) for step in steps]
+        self.raw_json = raw_json
 
 # MARK: - Game State
 
