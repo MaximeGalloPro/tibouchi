@@ -1,0 +1,94 @@
+{
+  "id": "160344be-f5ef-40d0-b20d-7ae6a9c42310",
+  "title": "A la recherche de nourriture dans l'espace",
+  "action_type": "nourrir",
+  "steps": [
+    {
+      "prompt": "Votre vaisseau spatial s'est écrasé sur une planète inconnue. Vous avez faim et devez trouver de la nourriture. Vous repérez des fruits étranges suspendus à des arbres exotiques.",
+      "choices": [
+        {
+          "text": "Manger les fruits inconnus",
+          "consequence": "Les fruits sont délicieux et rassasient votre faim, mais provoquent une réaction allergique qui vous affaiblit.",
+          "gaugeImpact": {
+            "faim": -5,
+            "soif": 0,
+            "mental": -1
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        },
+        {
+          "text": "Chercher une autre source de nourriture",
+          "consequence": "Vous trouvez des plantes comestibles mais peu appétissantes, vous apportant un soulagement modéré à votre faim.",
+          "gaugeImpact": {
+            "faim": -3,
+            "soif": 0,
+            "mental": 0
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        }
+      ]
+    },
+    {
+      "prompt": "Alors que vous explorez plus en profondeur la planète, vous découvrez une grotte mystérieuse avec des champignons luminescents. Ils pourraient être une source de nourriture.",
+      "choices": [
+        {
+          "text": "Manger les champignons luminescents",
+          "consequence": "Les champignons vous remplissent d'énergie, mais altèrent temporairement votre jugement.",
+          "gaugeImpact": {
+            "faim": -4,
+            "soif": 0,
+            "mental": -2
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        },
+        {
+          "text": "Rester méfiant et trouver une autre solution",
+          "consequence": "Vous évitez les champignons et trouvez une source d'eau potable à proximité.",
+          "gaugeImpact": {
+            "faim": 0,
+            "soif": -3,
+            "mental": 0
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        }
+      ]
+    },
+    {
+      "prompt": "Votre réserve de nourriture diminue rapidement. Au loin, vous apercevez une créature étrange qui semble transporter des provisions.",
+      "choices": [
+        {
+          "text": "Tenter de voler les provisions de la créature",
+          "consequence": "La créature se défend violemment, vous laissant blessé mais avec son sac de provisions.",
+          "gaugeImpact": {
+            "faim": -7,
+            "soif": -2,
+            "mental": -3
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        },
+        {
+          "text": "Négocier avec la créature pour obtenir des provisions",
+          "consequence": "La créature accepte l'échange et vous donne des provisions en échange d'un service à lui rendre.",
+          "gaugeImpact": {
+            "faim": -2,
+            "soif": -1,
+            "mental": -1
+          },
+          "outcome": "survive",
+          "gainTrait": null,
+          "requiredItem": null
+        }
+      ]
+    }
+  ]
+}

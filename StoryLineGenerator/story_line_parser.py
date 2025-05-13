@@ -2,6 +2,7 @@ import json
 from typing import Dict, Any
 from dataclasses import dataclass
 from models import Storyline, ActionType, GaugeState
+import uuid
 
 # MARK: - Erreurs personnalisées
 
@@ -32,30 +33,35 @@ class StorylineParseError(Exception):
 
 # MARK: - Parseur principal
 
-def parse_storyline(json_string: str) -> Storyline:
-    """
-    Parse une storyline à partir d'une chaîne JSON.
-    
-    Args:
-        json_string: La chaîne JSON contenant la storyline
-        
-    Returns:
-        La storyline parsée
-        
-    Raises:
-        StorylineParseError: Si le parsing échoue
-    """
+def parse_storyline(json_string: str):
     print("[StorylineParser] Tentative de décodage du JSON:")
     print(json_string)
     
     try:
         data = json.loads(json_string)
+        
+        print(f"[StorylineParser] ID d'origine dans le JSON: {data.get('id')}")
+        # Vérification et génération de l'UUID
+        if 'id' not in data:
+            print("[StorylineParser] Aucun ID trouvé, génération d'un nouvel UUID")
+            data['id'] = str(uuid.uuid4())
+        else:
+            try:
+                uuid_obj = uuid.UUID(data['id'])
+                data['id'] = str(uuid_obj)
+                print(f"[StorylineParser] UUID valide trouvé et normalisé: {data['id']}")
+            except ValueError:
+                print(f"[StorylineParser] ID invalide trouvé: {data['id']}, génération d'un nouvel UUID")
+                data['id'] = str(uuid.uuid4())
+        print(f"[StorylineParser] ID final utilisé: {data['id']}")
+        
+        corrected_json = json.dumps(data, ensure_ascii=False, indent=2)
         return Storyline(
             id=data['id'],
             title=data['title'],
             action_type=data['action_type'],
             steps=data['steps'],
-            raw_json=json_string
-        )
+            raw_json=corrected_json
+        ), corrected_json
     except Exception as e:
         raise StorylineParseError(f"Erreur lors du parsing de la storyline : {str(e)}")

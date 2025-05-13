@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2571EF2DD21B2D001F02EF /* outputs in Resources */ = {isa = PBXBuildFile; fileRef = 4F2571EB2DD21B2D001F02EF /* outputs */; };
+		4F5DF8872DD21829009CACDA /* StorylineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5DF8862DD21829009CACDA /* StorylineService.swift */; };
 		4F5E42282DCFA85700227F30 /* tibouchi Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F5E42272DCFA85700227F30 /* tibouchi Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F5E422D2DCFA85700227F30 /* tibouchiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E422C2DCFA85700227F30 /* tibouchiApp.swift */; };
 		4F5E422F2DCFA85700227F30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E422E2DCFA85700227F30 /* ContentView.swift */; };
@@ -58,6 +60,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F2571EB2DD21B2D001F02EF /* outputs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = outputs; path = StoryLineGenerator/outputs; sourceTree = SOURCE_ROOT; };
+		4F5DF8862DD21829009CACDA /* StorylineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorylineService.swift; path = Services/StorylineService.swift; sourceTree = "<group>"; };
 		4F5E42212DCFA85700227F30 /* tibouchi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tibouchi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E42272DCFA85700227F30 /* tibouchi Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tibouchi Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E422C2DCFA85700227F30 /* tibouchiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tibouchiApp.swift; sourceTree = "<group>"; };
@@ -124,7 +128,9 @@
 			children = (
 				4FCC9B632DCFBCCD00F20283 /* GameModels.swift */,
 				4FCC9B662DCFBCCD00F20283 /* SwipeCardView.swift */,
+				4F5DF8862DD21829009CACDA /* StorylineService.swift */,
 				4F5E422C2DCFA85700227F30 /* tibouchiApp.swift */,
+				4F2571EB2DD21B2D001F02EF /* outputs */,
 				4F5E422E2DCFA85700227F30 /* ContentView.swift */,
 				4F5E42302DCFA85900227F30 /* Assets.xcassets */,
 				4F5E42322DCFA85900227F30 /* Preview Content */,
@@ -290,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F5E42342DCFA85900227F30 /* Preview Assets.xcassets in Resources */,
+				4F2571EF2DD21B2D001F02EF /* outputs in Resources */,
 				4F5E42312DCFA85900227F30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5DF8872DD21829009CACDA /* StorylineService.swift in Sources */,
 				4F5E422F2DCFA85700227F30 /* ContentView.swift in Sources */,
 				4FCC9B692DCFBCCD00F20283 /* GameModels.swift in Sources */,
 				4F5E422D2DCFA85700227F30 /* tibouchiApp.swift in Sources */,

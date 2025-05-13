@@ -146,7 +146,7 @@ class StorylineGenerator:
                         cleaned_json_string = json.dumps(json_data)
                     
                     # Parser la storyline
-                    storyline = parse_storyline(cleaned_json_string)
+                    storyline, corrected_json = parse_storyline(cleaned_json_string)
                     future.set_result(storyline)
                 except json.JSONDecodeError as e:
                     future.set_exception(StorylineParseError.invalid_json())
@@ -211,7 +211,7 @@ async def main():
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"outputs/{safe_title}_{timestamp}.json"
             with open(filename, "w", encoding="utf-8") as f:
-                json.dump(json_data, f, ensure_ascii=False, indent=2)
+                f.write(storyline.raw_json)
             print(f"Storyline sauvegardée dans {filename} (formaté)")
         except Exception as e:
             print(f"Erreur lors de la sauvegarde du JSON : {e}")

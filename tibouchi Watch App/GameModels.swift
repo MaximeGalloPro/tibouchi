@@ -69,9 +69,9 @@ struct Choice: Codable {
     let text: String
     let consequence: String
     let gaugeImpact: GaugeState
-    let outcome: Outcome
+    let outcome: String
     let gainTrait: Trait?
-    let requiredItem: String? // ID d’objet nécessaire pour survivre à un danger
+    let requiredItem: String? // ID d'objet nécessaire pour survivre à un danger
 }
 
 /// Une étape d'une storyline
@@ -86,6 +86,30 @@ struct Storyline: Codable {
     let title: String
     let actionType: ActionType
     let steps: [StoryStep]
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let idString = try container.decode(String.self, forKey: .id)
+        print("📝 Tentative de décodage de l'ID: '\(idString)'")
+        
+        if let uuid = UUID(uuidString: idString) {
+            print("✅ UUID valide créé: \(uuid)")
+            id = uuid
+        } else {
+            print("❌ Échec de la création de l'UUID à partir de: '\(idString)'")
+            throw DecodingError.dataCorruptedError(forKey: .id, in: container, debugDescription: "Invalid UUID string: '\(idString)'")
+        }
+        title = try container.decode(String.self, forKey: .title)
+        actionType = try container.decode(ActionType.self, forKey: .actionType)
+        steps = try container.decode([StoryStep].self, forKey: .steps)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case actionType = "action_type"
+        case steps
+    }
 }
 
 // MARK: - État global du jeu
