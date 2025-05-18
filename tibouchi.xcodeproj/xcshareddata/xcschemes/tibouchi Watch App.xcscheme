@@ -89,9 +89,9 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = ""
-            value = ""
-            isEnabled = "">
+            key = "OPENAI_API_KEY"
+            value = "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"
+            isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
