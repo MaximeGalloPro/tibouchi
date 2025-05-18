@@ -90,7 +90,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = ""
-            value = "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"
+            value = ""
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
