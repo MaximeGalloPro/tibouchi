@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+class Pet: ObservableObject {
+    @Published var isHappy: Bool = true
+}
+
 @main
-struct tibouchi_Watch_AppApp: App {
+struct tibouchiApp: App {
+    @StateObject var pet = Pet()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharacterView(pet: pet)
         }
     }
 }

@@ -106,7 +106,8 @@ class StorylineGenerator:
         7. IMPORTANT : Utilise "action_type" et non "actionType" dans le JSON
         8. IMPORTANT : Ne mets pas de balises markdown ou de commentaires dans le JSON
         9. IMPORTANT : Réponds UNIQUEMENT avec le JSON, sans aucun autre texte
-        {f'10. IMPORTANT : L\'histoire doit être centrée sur le thème suivant : {theme}' if theme else ''}
+        10. IMPORTANT : Il doit y avaoir une un "outcome" qui DOIT être "home"
+        {f'11. IMPORTANT : L\'histoire doit être centrée sur le thème suivant : {theme}' if theme else ''}
 
         Génère une storyline pour l'action suivante : {action_type.value}
         """
